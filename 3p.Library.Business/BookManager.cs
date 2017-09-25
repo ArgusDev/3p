@@ -14,22 +14,22 @@ namespace _3p.Library.Business
 {
     public class BookManager: IBookManager
     {
-        private const int DEFAULT_BOOK_ASSIGNEMENT_DAYS = 30;
+        protected const int DEFAULT_BOOK_ASSIGNEMENT_DAYS = 30;
 
-        private readonly IEntityDbContext _entityDbContext;
+        protected readonly IEntityDbContext _entityDbContext;
 
         public BookManager(IEntityDbContext entityDbContext)
         {
             _entityDbContext = entityDbContext;
         }
 
-        public IEnumerable<BookInfoDto> GetAllBooksInfo()
+        public virtual IEnumerable<BookInfoDto> GetAllBooksInfo()
         {
             return _entityDbContext.Books.Select(
                 b => new BookInfoDto {BookDescription = $"'{b.Title}' by {b.Authors}"});
         }
 
-        public IEnumerable<OverdueBookInfoDto> GetOverdueBooks()
+        public virtual IEnumerable<OverdueBookInfoDto> GetOverdueBooks()
         {
             return _entityDbContext.BookAssignments
                 .Where(ba => ba.ExpectedReturnedDate < DateTime.Today && ba.ReturnedDate == null)
@@ -47,7 +47,7 @@ namespace _3p.Library.Business
                     });
         }
 
-        public void AssignBook(AssignBookCriteriaDto assignBookCriteriaDto)
+        public virtual void AssignBook(AssignBookCriteriaDto assignBookCriteriaDto)
         {
             if (assignBookCriteriaDto == null)
                 throw new ArgumentNullException();
@@ -67,7 +67,7 @@ namespace _3p.Library.Business
             _entityDbContext.SaveChanges();
         }
 
-        public void ExtendExpectedReturnDate(ExtendExpectedReturnDateCriteriaDto extendExpectedReturnDateDto)
+        public virtual void ExtendExpectedReturnDate(ExtendExpectedReturnDateCriteriaDto extendExpectedReturnDateDto)
         {
             if (extendExpectedReturnDateDto == null)
                 throw new ArgumentNullException();

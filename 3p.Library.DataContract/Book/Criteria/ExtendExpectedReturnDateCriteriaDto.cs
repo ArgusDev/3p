@@ -8,7 +8,7 @@ namespace _3p.Library.DataContract.Book.Criteria
 {
     public class ExtendExpectedReturnDateCriteriaDto: Dto
     {
-        public int BookAssignementId { get; set; }
-        public DateTime ExpectedReturnDate { get; set; }
+        public virtual int BookAssignementId { get; set; }
+        public virtual DateTime ExpectedReturnDate { get; set; }
     }
 }

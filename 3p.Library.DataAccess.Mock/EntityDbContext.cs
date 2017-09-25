@@ -16,7 +16,7 @@ namespace _3p.Library.DataAccess.Mock
             BookAssignments = Mock.BookAssignments.GetBookAssignments();
         }
 
-        public void SaveChanges()
+        public virtual void SaveChanges()
         {
             //persist data
         }

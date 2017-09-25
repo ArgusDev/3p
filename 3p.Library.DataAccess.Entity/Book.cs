@@ -8,7 +8,7 @@ namespace _3p.Library.DataAccess.Entity
 {
     public class Book: EntityBase
     {
-        public string Authors { get; set; }
-        public string Title { get; set; }
+        public virtual string Authors { get; set; }
+        public virtual string Title { get; set; }
     }
 }

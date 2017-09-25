@@ -8,6 +8,6 @@ namespace _3p.Library.DataAccess.Entity
 {
     public class EntityBase
     {
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
     }
 }

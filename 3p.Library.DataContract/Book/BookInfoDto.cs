@@ -8,6 +8,6 @@ namespace _3p.Library.DataContract.Book
 {
     public class BookInfoDto: Dto
     {
-        public string BookDescription { get; set; }
+        public virtual string BookDescription { get; set; }
     }
 }
