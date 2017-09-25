@@ -38,6 +38,7 @@ namespace _3p.Library.Business
                 .Select(
                     j => new OverdueBookInfoDto
                     {
+                        BookAssignementId = j.BookAssignment.Id,
                         BookId = j.Book.Id,
                         BookDescription = $"'{j.Book.Title}' by {j.Book.Authors}",
                         TakenByStudentId = j.Student.Id,

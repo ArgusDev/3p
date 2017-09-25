@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using _3p.Library.DataContract.Interface;
-using _3p.Library.Business;
 using _3p.Library.DataAccess.Mock;
 using _3p.Library.DataContract.Book;
 using _3p.Library.DataContract.Book.Criteria;
@@ -34,6 +32,21 @@ namespace _3p.Library.Business.UnitTest
 
             Assert.IsNotNull(overdueBooks);
             Assert.AreEqual(1, overdueBooks.Count());
+        }
+
+        [TestMethod]
+        public void GetOverdueBooks_Should_All_Properties_Be_Populated()
+        {
+            var bookManger = new BookManager(new EntityDbContext());
+
+            OverdueBookInfoDto overdueBook = bookManger.GetOverdueBooks().First();
+
+            Assert.IsFalse(overdueBook.BookAssignementId == default(int));
+            Assert.IsFalse(overdueBook.BookId == default(int));
+            Assert.IsFalse(string.IsNullOrEmpty(overdueBook.BookDescription));
+            Assert.IsFalse(overdueBook.TakenByStudentId == default(int));
+            Assert.IsFalse(string.IsNullOrEmpty(overdueBook.TakenByStudentName));
+            Assert.IsFalse(overdueBook.ExpectedReturnDate == default(DateTime));
         }
 
         [TestMethod]
